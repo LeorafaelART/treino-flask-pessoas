@@ -30,4 +30,4 @@ Projeto simples desenvolvido com Flask para estudo de:
 Clone o repositório:
 
 ```bash
-git clone https://github.com/LeorafaelART/treino-flask-pessoas/blob/main/README.md
+git clone https://github.com/LeorafaelART/treino-flask-pessoas.git
