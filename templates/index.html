@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Pessoas</title>
+
+    <style>
+        <!-- Estilos da página: define fontes, cores e layout básico -->
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial;
+        }
+
+        body{
+            background:#f4f4f4;
+        }
+
+        .container{
+            width:90%;
+            margin:auto;
+            margin-top:40px;
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:30px;
+        }
+
+        .cadastro{
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            margin-bottom:30px;
+        }
+
+        .cadastro form{
+            display:flex;
+            gap:10px;
+            flex-wrap:wrap;
+        }
+
+        .cadastro input{
+            padding:12px;
+            flex:1;
+            min-width:200px;
+        }
+
+        .btn-cadastrar{
+            background:green;
+            color:white;
+            border:none;
+            padding:12px 20px;
+            cursor:pointer;
+            border-radius:5px;
+        }
+
+        .topo{
+            display:flex;
+            gap:10px;
+            margin-bottom:20px;
+        }
+
+        .topo input{
+            flex:1;
+            padding:12px;
+        }
+
+        .contador{
+            background:white;
+            border:1px solid #007bff;
+            color:#007bff;
+            padding:12px 20px;
+            border-radius:5px;
+            font-weight:bold;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            background:white;
+        }
+
+        th{
+            background:#e9e9e9;
+            padding:15px;
+            text-align:left;
+        }
+
+        td{
+            padding:15px;
+            border-top:1px solid #ddd;
+        }
+
+        .btn-excluir{
+            background:red;
+            color:white;
+            padding:8px 12px;
+            text-decoration:none;
+            border-radius:5px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+
+        <h1 class="text-center fw-bold my-3">TREINO CADASTRO PESSOAS</h1>
+
+        <!-- Bloco de cadastro: formulário para adicionar uma nova pessoa -->
+        <div class="cadastro">
+
+            <form method="POST">
+
+                <input
+                    type="text"
+                    name="nome"
+                    placeholder="Nome"
+                    required
+                >
+
+                <input
+                    type="text"
+                    name="cpf"
+                    placeholder="CPF"
+                    required
+                >
+
+                <input
+                    type="text"
+                    name="setor"
+                    placeholder="Setor"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    class="btn-cadastrar"
+                >
+                    Cadastrar
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- Área de filtros e contagem: busca visual (não está ligada ao servidor) e mostra o total de registros -->
+        <div class="topo">
+
+            <input
+                type="text"
+                placeholder="Pesquisar pessoa..."
+            >
+
+            <div class="contador">
+                {{ pessoas|length }} registro(s)
+            </div>
+
+        </div>
+
+        <!-- Tabela de resultados: exibe os registros de pessoas cadastradas -->
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Setor</th>
+                    <th>Ações</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for pessoa in pessoas %}
+
+                <tr>
+
+                    <td>{{ pessoa.id }}</td>
+
+                    <td>{{ pessoa.nome }}</td>
+
+                    <td>{{ pessoa.cpf }}</td>
+
+                    <td>{{ pessoa.setor }}</td>
+
+                    <td>
+
+                        <!-- Botão/link para excluir o registro correspondente -->
+                        <a
+                            href="/excluir/{{ pessoa.id }}"
+                            class="btn-excluir"
+                        >
+                            Excluir
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</body>
+</html>
