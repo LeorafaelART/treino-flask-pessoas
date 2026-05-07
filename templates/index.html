@@ -69,6 +69,30 @@
             padding:12px;
         }
 
+        .btn-pesquisar{
+            background:green;
+            color:white;
+            border:none;
+            width: 42px;
+            height: 42px;
+            cursor:pointer;
+            border-radius:5px;
+            font: size 17px;
+        }
+
+        .btn-pesquisar:hover{
+            background-color:darkgreen;
+        }
+
+        .btn-limpar{
+            background:#555;
+            color:white;
+            padding: 12px 15px;
+            text-decoration:none;
+            border-radius:5px;
+        }
+
+
         .contador{
             background:white;
             border:1px solid #007bff;
@@ -150,18 +174,21 @@
         </div>
 
         <!-- Área de filtros e contagem: busca visual (não está ligada ao servidor) e mostra o total de registros -->
-        <div class="topo">
+        <form class="topo" method="GET">
 
-            <input
-                type="text"
-                placeholder="Pesquisar pessoa..."
-            >
+            <input type="text" name="busca" placeholder="Pesquisar pesso..." value="{{ buscas or ''}}">
+            <button type="submit" class="btn-pesquisar">
+                🔍
+            </button>
+
+            <a href="/" class="btn-limpar">
+                Limpar
+            </a>
 
             <div class="contador">
-                {{ pessoas|length }} registro(s)
+                {{ total }} registro(s)
             </div>
-
-        </div>
+        </form>
 
         <!-- Tabela de resultados: exibe os registros de pessoas cadastradas -->
         <table>

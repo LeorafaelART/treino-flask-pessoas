@@ -34,6 +34,7 @@ def home():
             """
             SELECT * FROM pessoas
             WHERE nome LIKE ?
+            OR cpf LIKE ?
             OR id = ?
             """,
             (
